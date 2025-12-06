@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NYU Jasper Kane Menu Pretotype</title>
+
+<style>
+    /* COLORS */
+    :root {
+        --nyu-purple: #57068C;
+        --soft-cream: #f7f5f0;
+        --coffee-brown: #4b3627;
+        --earth-brown: #6a4b25;
+        --light-beige: #fbfaf6;
+        --shadow: rgba(0,0,0,0.15);
+    }
+
+    body {
+        font-family: 'Segoe UI', Arial, sans-serif;
+        background-color: var(--soft-cream);
+        padding: 20px;
+        margin: 0;
+        color: var(--coffee-brown);
+    }
+
+    header {
+        text-align: center;
+        padding: 10px;
+    }
+    h1 {
+        color: var(--nyu-purple);
+        font-weight: 800;
+        font-size: 2.2rem;
+        margin-bottom: 5px;
+    }
+    p.subtitle {
+        color: var(--earth-brown);
+        font-size: 1.1rem;
+        font-weight: 500;
+        margin-top: 0;
+    }
+
+    .menu-container {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 35px;
+        flex-wrap: wrap;
+        gap: 25px;
+        padding-bottom: 40px;
+    }
+
+    .menu {
+        background: var(--light-beige);
+        width: 40%;
+        min-width: 300px;
+        border-radius: 14px;
+        box-shadow: 0 5px 15px var(--shadow);
+        padding: 20px 25px;
+        border-top: 8px solid var(--nyu-purple);
+        transition: 0.3s transform;
+    }
+
+    .menu:hover {
+        transform: scale(1.02);
+    }
+
+    h2 {
+        text-align: center;
+        color: var(--nyu-purple);
+        font-weight: 700;
+    }
+
+    ul { list-style: none; padding-left: 0; }
+
+    li {
+        padding: 8px 0;
+        border-bottom: 1px solid #ddd;
+        cursor: pointer;
+        transition: 0.2s;
+        font-weight: 500;
+    }
+
+    li:hover {
+        background-color: #e8e2d6;
+        padding-left: 5px;
+    }
+
+    button {
+        width: 100%;
+        padding: 13px;
+        margin-top: 20px;
+        font-size: 17px;
+        border: none;
+        background-color: var(--nyu-purple);
+        color: white;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        transition: background-color 0.3s, transform 0.2s;
+    }
+
+    button:hover {
+        background-color: #8038c3;
+        transform: scale(1.02);
+    }
+
+    #results, #details, #food-info {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--coffee-brown);
+    }
+
+    /* SWITCH STYLING */
+    .toggle-area {
+        text-align: center;
+        margin-top: 15px;
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: var(--earth-brown);
+    }
+
+    .survey-box {
+        display: none;
+        margin: 30px auto;
+        max-width: 500px;
+        background: var(--light-beige);
+        padding: 20px;
+        border-radius: 12px;
+        text-align: center;
+        box-shadow: 0 5px 15px var(--shadow);
+        border-left: 8px solid var(--nyu-purple);
+    }
+
+    select, textarea {
+        width: 90%;
+        padding: 10px;
+        margin-top: 10px;
+        border-radius: 6px;
+        border: 1px solid #bbb;
+        font-size: 15px;
+    }
+    textarea { height: 70px; }
+
+</style>
+</head>
+<body>
+
+<header>
+    <h1>NYU Jasper Kane Menu Study</h1>
+    <p class="subtitle">Which dining experience would you choose?</p>
+</header>
+
+<p class="toggle-area">🍽️ <b>Meal Swipe?</b> 
+<input type="checkbox" id="swipeToggle" onchange="updateCosts()"> (Toggle On/Off)</p>
+
+<div class="menu-container">
+
+    <!-- Current Jasper Kane Menu -->
+    <div class="menu">
+        <h2>Menu A: Current Options</h2>
+        <ul>
+            <li onclick="showCalories('Chicken Tenders')">Chicken Tenders</li>
+            <li onclick="showCalories('Smash Burger')">Smash Burger</li>
+            <li onclick="showCalories('French Fries')">French Fries</li>
+            <li onclick="showCalories('Pizza')">Pizza Slice</li>
+            <li onclick="showCalories('Sushi')">Sushi (Basic)</li>
+            <li onclick="showCalories('BLT')">BLT Sandwich</li>
+            <li onclick="showCalories('Subs')">Deli Subs</li>
+            <li onclick="showCalories('Donuts')">Donuts / Pastries</li>
+        </ul>
+        <button onclick="vote('current')">Choose Menu A</button>
+    </div>
+
+    <!-- Improved Menu -->
+    <div class="menu">
+        <h2>Menu B: New Options</h2>
+        <ul>
+            <li onclick="showCalories('Grilled Chicken')">Grilled Chicken Breast</li>
+            <li onclick="showCalories('Steak Strips')">Steak Strips</li>
+            <li onclick="showCalories('Green Beans')">Roasted Green Beans</li>
+            <li onclick="showCalories('Quinoa Bowl')">Quinoa / Brown Rice Bowl</li>
+            <li onclick="showCalories('Veg Stir Fry')">Vegetarian Stir-Fry</li>
+            <li onclick="showCalories('Tofu Bowl')">Tofu Protein Bowl</li>
+            <li onclick="showCalories('Fresh Fruit')">Fresh Fruit Bar</li>
+            <li onclick="showCalories('Soups')">Rotating Soups (Lentil/Chicken)</li>
+        </ul>
+        <button onclick="vote('improved')">Choose Menu B</button>
+    </div>
+
+</div>
+
+<div id="results"></div>
+<div id="details"></div>
+<div id="food-info"></div>
+
+<div id="survey" class="survey-box">
+    <h3>Quick Survey</h3>
+    <label>Why did you pick this option?</label><br>
+    <select id="reason">
+        <option>Healthier options</option>
+        <option>More variety</option>
+        <option>Better value</option>
+        <option>Looks tastier</option>
+        <option>Other students want it</option>
+    </select><br><br>
+    <textarea id="feedback" placeholder="Optional: Add more thoughts..."></textarea><br>
+    <button onclick="submitSurvey()">Submit</button>
+</div>
+
+<script>
+let votes = { current: 0, improved: 0 };
+
+const calories = {
+    "Chicken Tenders": 520, "Smash Burger": 780, "French Fries": 420, "Pizza": 400,
+    "Sushi": 360, "BLT": 540, "Subs": 610, "Basic Salad": 120, "Donuts": 450,
+    "Grilled Chicken": 220, "Steak Strips": 310, "Green Beans": 90, "Quinoa Bowl": 260,
+    "Veg Stir Fry": 210, "Tofu Bowl": 190, "Fresh Fruit": 140, "Soups": 180
+};
+
+const nutritionGrade = {
+    current: "🔴 High-Cal / Low-nutrient",
+    improved: "🟢 Healthy / Balanced Options"
+};
+
+let cost = { current: 12.25, improved: 13.50 };
+
+function updateCosts() {
+    let swipe = document.getElementById("swipeToggle").checked;
+    cost.current = swipe ? 0 : 12.25;
+    cost.improved = swipe ? 0 : 13.50;
+}
+
+function showCalories(item) {
+    document.getElementById("food-info").innerHTML =
+        `${item}: <b>${calories[item]} calories</b>`;
+}
+
+function vote(option) {
+    votes[option]++;
+    document.getElementById("results").innerHTML =
+        `Votes → A: ${votes.current} | B: ${votes.improved}`;
+    document.getElementById("details").innerHTML =
+        `Nutrition: <b>${nutritionGrade[option]}</b> | Cost: <b>$${cost[option].toFixed(2)}</b>`;
+    document.getElementById("survey").style.display = "block";
+}
+
+function submitSurvey() {
+    alert("Thanks! Your response has been recorded! 💜");
+}
+</script>
+
+</body>
+</html>
